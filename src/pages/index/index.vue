@@ -1,11 +1,11 @@
 <template>
   <view id="home">
     <view class="content">
-      <view class="kk">
-        <view class="info" v-for="(item, index) in dataList" :key="index" :class="item.class">
+      <scroll-view class="kk" ref="kcontent" :scroll-into-view="toView" :scroll-y="true">
+        <view class="info" v-for="(item, index) in dataList" :key="index" :class="item.class" :id="`c-${index}`">
           <view class="infoContent">{{ item.text }}</view>
         </view>
-      </view>
+      </scroll-view>
     </view>
     <view class="input">
       <textarea name="" v-model="textareaVal"></textarea>
@@ -21,6 +21,7 @@ import Taro from '@tarojs/taro'
 
 const dataList = ref([]);
 const textareaVal = ref("");
+const toView = ref('');
 let cache = ''
 
 const sendOut = async () => {
@@ -55,7 +56,8 @@ const dataListLength = computed(() => {
 
 watch(dataListLength, (newVal, oldVal) => {
   if (newVal !== oldVal) {
-
+    console.log(66522)
+    toView.value = `c-${dataListLength.value - 1}`
   }
 })
 </script>
