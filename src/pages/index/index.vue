@@ -208,6 +208,7 @@ watch(dataList.value, (newVal, oldVal) => {
       direction: rtl;
       .infoContent {
         margin-right: 20px;
+        direction: ltr;
       }
       &::after {
         position: absolute;
