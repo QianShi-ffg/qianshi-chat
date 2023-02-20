@@ -5,12 +5,14 @@
         <view class="info" v-for="(item, index) in dataList" :key="index" :class="item.class" :id="`c-${index}`">
           <image src="../../images/user.png" v-if="item.class === 'rightInfo'"></image>
           <image src="../../images/ai.png" v-else></image>
-          <view class="infoContent">{{ item.text }}</view>
+          <view class="infoContent text-box">
+            <text :user-select="true" :id="`text-${index}`">{{ item.text }}</text>
+          </view>
         </view>
       </scroll-view>
     <!-- </view> -->
     <view class="input">
-      <textarea name="" v-model="textareaVal"></textarea>
+      <textarea name="" v-model="textareaVal" :showConfirmBar="false" :fixed="true" cursorSpacing="20px"></textarea>
       <view class="button send-btn" @tap="sendOut" v-if="!loading">
         <view>发 送</view>
       </view>
