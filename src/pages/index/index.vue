@@ -6,7 +6,9 @@
           <image src="../../images/user.png" v-if="item.class === 'rightInfo'"></image>
           <image src="../../images/ai.png" v-else></image>
           <view class="infoContent text-box">
-            <text :user-select="true" :id="`text-${index}`">{{ item.text }}</text>
+            <text :user-select="true" :id="`text-${index}`">
+              {{ item.text }}
+            </text>
           </view>
         </view>
       </scroll-view>
@@ -182,6 +184,9 @@ watch(dataList.value, (newVal, oldVal) => {
         box-sizing: border-box;
         background: #3aa0c9cc;
         border-radius: 10px;
+        text {
+          word-wrap: break-word;
+        }
       }
     }
     .leftInfo {
