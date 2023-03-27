@@ -64,15 +64,23 @@ export class ChatService {
         count = 0;
       }
     }, 1000);
+    const params = {
+      apiKey: res.key,
+      completionParams: {
+        model: 'gpt-3.5-turbo-0301',
+        temperature: 0.5,
+        top_p: 0.8,
+      },
+    };
     if (count === 0) {
       // 初始访问 init
-      api = new ChatGPTAPI({ apiKey: res.key });
+      api = new ChatGPTAPI(params);
     } else if (count > 0 && count <= 300) {
       // 5分钟间隔判断在话题时间内
       count = 1;
     } else {
       // 超出话题间隔时间，则重新计数，重新开始话题
-      api = new ChatGPTAPI({ apiKey: res.key });
+      api = new ChatGPTAPI(params);
       count = 1;
     }
     const response = await this.generateResponse(api, message);

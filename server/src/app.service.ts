@@ -3,7 +3,6 @@ import { HttpService } from '@nestjs/axios';
 import * as dayjs from 'dayjs';
 import { createWriteStream, mkdirSync, existsSync } from 'fs';
 import { join, extname } from 'path';
-import { FriendShipService } from './modules/friend-ship/friend-ship.service';
 import { CountToken } from './entities/token.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -14,7 +13,6 @@ export class AppService {
     @InjectRepository(CountToken)
     private CountTokenRepository: Repository<CountToken>,
     private httpService: HttpService,
-    private readonly friendShipService: FriendShipService,
   ) {}
 
   async overview(): Promise<any> {
@@ -217,10 +215,5 @@ export class AppService {
         mkdirSync(join(__dirname, '../public/uploads'));
       }
     }
-  }
-
-  async refreshScreenShot(data) {
-    console.log(data);
-    return await this.friendShipService.setScreenShot(data);
   }
 }
