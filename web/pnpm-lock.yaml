@@ -28,6 +28,7 @@ specifiers:
   eslint: ^8.12.0
   eslint-config-taro: 3.6.1
   eslint-plugin-vue: ^8.0.0
+  marked: ^4.3.0
   pinia: ^2.0.10
   postcss: ^8.4.18
   style-loader: 1.3.0
@@ -52,12 +53,13 @@ dependencies:
   '@tarojs/runtime': 3.6.1
   '@tarojs/shared': 3.6.1
   '@tarojs/taro': 3.6.1_vue@3.2.47
+  marked: 4.3.0
   pinia: 2.0.33_hmuptsblhheur2tugfgucj7gc4
   vue: 3.2.47
 
 devDependencies:
   '@babel/core': 7.21.3
-  '@tarojs/cli': 3.6.1_postcss@8.4.21+vue@3.2.47
+  '@tarojs/cli': 3.6.1_vue@3.2.47
   '@tarojs/webpack5-runner': 3.6.1_rfhimnd57xiw67inzzqjld75fu
   '@types/webpack-env': 1.18.0
   '@typescript-eslint/eslint-plugin': 5.56.0_iskin7c6dxqunwflhstekcjqmq
@@ -1774,12 +1776,10 @@ packages:
       '@babel/runtime': 7.21.0
       '@tarojs/runtime': 3.6.1
 
-  /@tarojs/cli/3.6.1_postcss@8.4.21+vue@3.2.47:
+  /@tarojs/cli/3.6.1_vue@3.2.47:
     resolution: {integrity: sha512-ss3fYDyAQ5GyZdUVRPIG+VnlugAsZ8NpEdX0R4Nbwh98/GNsoNfEcQ/t6uKag+nzrr2kVLaq37CHycPwvwh9tQ==}
     engines: {node: '>=12'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.4.18
     dependencies:
       '@babel/generator': 7.21.3
       '@babel/template': 7.20.7
@@ -3659,7 +3659,7 @@ packages:
       babel-plugin-transform-react-jsx-to-rn-stylesheet: 3.6.1
       babel-plugin-transform-taroapi: 3.6.1
       core-js: 3.29.1
-      metro-react-native-babel-preset: 0.72.3_@babel+core@7.21.3
+      metro-react-native-babel-preset: 0.72.3
       react-refresh: 0.11.0
     transitivePeerDependencies:
       - '@types/react'
@@ -8758,6 +8758,12 @@ packages:
     resolution: {integrity: sha512-1RUZVgQlpJSPWYbFSpmudq5nHY1doEIv89gBtF0s4gW1GF2XorxcA/70M5vq7rLv0a6mhOUccRsqkwhwLCIQ2Q==}
     dev: true
 
+  /marked/4.3.0:
+    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
+    engines: {node: '>= 12'}
+    hasBin: true
+    dev: false
+
   /math-random/1.0.4:
     resolution: {integrity: sha512-rUxjysqif/BZQH2yhd5Aaq7vXMSx9NdEsQcyA07uEzIvxgI7zIr33gGsh+RU0/XjmQpCW7RsVof1vlkvQVCK5A==}
     dev: true
@@ -8887,10 +8893,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /metro-react-native-babel-preset/0.72.3_@babel+core@7.21.3:
+  /metro-react-native-babel-preset/0.72.3:
     resolution: {integrity: sha512-uJx9y/1NIqoYTp6ZW1osJ7U5ZrXGAJbOQ/Qzl05BdGYvN1S7Qmbzid6xOirgK0EIT0pJKEEh1s8qbassYZe4cw==}
-    peerDependencies:
-      '@babel/core': '*'
     dependencies:
       '@babel/core': 7.21.3
       '@babel/plugin-proposal-async-generator-functions': 7.20.7_@babel+core@7.21.3

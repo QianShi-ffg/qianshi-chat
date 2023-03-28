@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import Taro from "@tarojs/taro";
-
 import './app.scss'
 
 const App = createApp({

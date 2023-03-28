@@ -67,7 +67,7 @@ export class ChatService {
     const params = {
       apiKey: res.key,
       completionParams: {
-        model: 'gpt-3.5-turbo-0301',
+        model: 'gpt-3.5-turbo',
         temperature: 0.5,
         top_p: 0.8,
       },

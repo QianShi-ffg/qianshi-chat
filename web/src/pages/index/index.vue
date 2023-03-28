@@ -6,9 +6,8 @@
           <image src="../../images/user.png" v-if="item.class === 'rightInfo'"></image>
           <image src="../../images/ai.png" v-else></image>
           <view class="infoContent text-box">
-            <text :user-select="true" :id="`text-${index}`">
-              {{ item.text }}
-            </text>
+            <view v-html="item.text" :user-select="true" :id="`text-${index}`">
+            </view>
           </view>
         </view>
       </scroll-view>
@@ -29,6 +28,7 @@
 import { computed, nextTick, ref, watch } from "vue";
 import { chat } from "../../server/api";
 import Taro from '@tarojs/taro'
+const { marked } = require('marked');
 
 const dataList = ref([]);
 const textareaVal = ref("");
@@ -55,9 +55,10 @@ const collect = async () => {
   console.log(cache, 666)
   const res = await chat({ message: cache });
   if (res.data.code === 200) {
+    console.log(res.data.data[0].text, 56333)
     cache = ''
     dataList.value.push({
-      text: res.data.data[0].text,
+      text: marked(res.data.data[0].text),
       class: 'leftInfo'
     });
     loading.value = false
