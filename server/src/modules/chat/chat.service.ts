@@ -125,8 +125,8 @@ export class ChatService {
 
   // 处理用户输入并生成响应
   async generateResponse(api, input) {
-    console.log(api);
     // 将id输入添加到上下文中
+    console.log(api);
     try {
       const res = await api.sendMessage(input, {
         conversationId: conversationObj.conversationId,
@@ -136,7 +136,6 @@ export class ChatService {
         conversationId: res.conversationId,
         parentMessageId: res.id,
       };
-      // console.log(res, '----------------------------');
       const text = res.text;
 
       // 返回生成的响应
