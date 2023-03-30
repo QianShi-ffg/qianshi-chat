@@ -36,8 +36,9 @@ export class ChatController {
   }
 
   @Post('/textModel')
-  newchat(@Body() data: any) {
-    return this.chatService.newChat(data.message, data.key, data.id);
+  newChat(@Body() data: any) {
+    const { key, message, id } = data;
+    return this.chatService.newChat(key, message, id);
   }
 
   @Patch(':id')
