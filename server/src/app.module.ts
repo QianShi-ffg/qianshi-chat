@@ -15,11 +15,11 @@ import { CountToken } from './entities/token.entity';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'mysql',
-        host: 'localhost',
+        host: '43.153.14.125',
         port: 3306,
-        username: 'root',
-        password: 'root',
-        database: 'root',
+        username: '1',
+        password: 'chatServer@147258',
+        database: '1',
         timezone: '+08:00',
         charset: 'utf8mb4',
         // entities: ['dist/**/*.entity{.ts,.js}'],

@@ -149,4 +149,67 @@ export class ChatService {
       }
     }
   }
+  async newChat(message: string, key: string, id: string) {
+    const { ChatGPTAPI } = await importDynamic('chatgpt');
+    clearInterval(countTimeer);
+    countTimeer = setInterval(() => {
+      count++;
+      // 10分钟没有再次访问视为不再继续使用，计时器停止计时
+      if (count >= 600) {
+        clearInterval(countTimeer);
+        count = 0;
+      }
+    }, 1000);
+    const params = {
+      apiKey: key,
+      completionParams: {
+        model: 'gpt-3.5-turbo',
+        temperature: 0.5,
+        top_p: 0.8,
+      },
+    };
+    if (count === 0) {
+      // 初始访问 init
+      api = new ChatGPTAPI(params);
+    } else if (count > 0 && count <= 300) {
+      // 5分钟间隔判断在话题时间内
+      count = 1;
+    } else {
+      // 超出话题间隔时间，则重新计数，重新开始话题
+      api = new ChatGPTAPI(params);
+      count = 1;
+    }
+    const response = await this.newGenerateResponse(api, message, id);
+
+    return {
+      code: 200,
+      data: response,
+      message: '获取成功',
+    };
+  }
+
+  // 处理用户输入并生成响应
+  async newGenerateResponse(api: any, input: string, id: string) {
+    // 将id输入添加到上下文中
+    console.log(api);
+    try {
+      const res = await api.sendMessage(input, {
+        parentMessageId: id,
+      });
+      const text = res.text;
+
+      // 返回生成的响应
+      return {
+        text: text,
+        parentMessageId: res.id,
+      };
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.status);
+        console.log(error.response.data);
+      } else {
+        console.log(error.message);
+      }
+    }
+  }
 }
