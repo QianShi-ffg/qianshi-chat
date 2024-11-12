@@ -3,23 +3,24 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
-import { HttpModule } from '@nestjs/axios';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { HttpModule } from '@nestjs/axios';
 import { join } from 'path';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ChatModule } from './modules/chat/chat.module';
 import { CountToken } from './entities/token.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      useFactory: () => ({
+      imports: [ConfigModule], 
+      useFactory: (configService: ConfigService) => ({
         type: 'mysql',
-        host: '111.229.124.159',
-        port: 3306,
-        username: 'blogCeshi',
-        password: '147258369',
-        database: 'blogceshi',
+        host: configService.get('DB_HOST'),
+        port: configService.get('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_NAME'),
         timezone: '+08:00',
         charset: 'utf8mb4',
         // entities: ['dist/**/*.entity{.ts,.js}'],
@@ -27,6 +28,7 @@ import { CountToken } from './entities/token.entity';
         logging: false,
         autoLoadEntities: true,
       }),
+      inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([CountToken]),
     UserModule,
@@ -36,6 +38,7 @@ import { CountToken } from './entities/token.entity';
     }),
     ConfigModule.forRoot({
       envFilePath: ['.env'],
+      isGlobal: true
     }),
     ChatModule,
   ],

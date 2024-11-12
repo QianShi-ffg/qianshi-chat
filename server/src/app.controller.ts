@@ -17,21 +17,6 @@ import { Express, Request } from 'express';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('overview')
-  overview() {
-    return this.appService.overview();
-  }
-
-  @Get('refreshToken')
-  refreshToken(): any {
-    return this.appService.refreshToken();
-  }
-
-  @Get('cityWeather')
-  cityWeather(@Headers() header) {
-    return this.appService.city(header);
-  }
-
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@Body() body, @UploadedFile() file: Express.Multer.File) {
