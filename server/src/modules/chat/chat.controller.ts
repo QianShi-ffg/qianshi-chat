@@ -30,16 +30,11 @@ export class ChatController {
     return this.chatService.findOne(+id);
   }
 
-  @Post('/freeAi')
-  chat(@Body() data: any) {
-    return this.chatService.chat(data.message);
-  }
+  // @Post('/freeAi')
+  // chat(@Body() data: any) {
+  //   return this.chatService.chat(data.message);
+  // }
 
-  @Post('/textModel')
-  newChat(@Body() data: any) {
-    const { key, message, id } = data;
-    return this.chatService.newChat(key, message, id);
-  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateChatDto: UpdateChatDto) {
